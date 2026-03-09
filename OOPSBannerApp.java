@@ -1,92 +1,54 @@
+import java.util.HashMap;
+
 public class OOPSBannerApp {
-
-    /**
-     * Inner Static Class to store character and its banner pattern
-     */
-    static class CharacterPattern {
-        private char character;
-        private String[] pattern;
-
-        // Constructor
-        public CharacterPattern(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
-
-        // Getter for character
-        public char getCharacter() {
-            return character;
-        }
-
-        // Getter for pattern
-        public String[] getPattern() {
-            return pattern;
-        }
-    }
-
-    /**
-     * Utility method to return CharacterPattern object
-     */
-    public static CharacterPattern getCharacterPattern(char ch) {
-
-        if (ch == 'O') {
-            return new CharacterPattern('O', new String[]{
-                    "  *****  ",
-                    " *     * ",
-                    " *     * ",
-                    " *     * ",
-                    " *     * ",
-                    " *     * ",
-                    "  *****  "
-            });
-        }
-
-        if (ch == 'P') {
-            return new CharacterPattern('P', new String[]{
-                    " ******  ",
-                    " *     * ",
-                    " *     * ",
-                    " ******  ",
-                    " *       ",
-                    " *       ",
-                    " *       "
-            });
-        }
-
-        if (ch == 'S') {
-            return new CharacterPattern('S', new String[]{
-                    "  *****  ",
-                    " *       ",
-                    " *       ",
-                    "  *****  ",
-                    "       * ",
-                    " *     * ",
-                    "  *****  "
-            });
-        }
-
-        return null;
-    }
 
     public static void main(String[] args) {
 
-        char[] word = {'O', 'O', 'P', 'S'};
+        // HashMap to store patterns
+        HashMap<Character, String[]> patterns = new HashMap<>();
 
-        CharacterPattern[] patterns = new CharacterPattern[word.length];
+        patterns.put('O', new String[]{
+                "  *****  ",
+                " *     * ",
+                " *     * ",
+                " *     * ",
+                " *     * ",
+                " *     * ",
+                "  *****  "
+        });
 
-        for (int i = 0; i < word.length; i++) {
-            patterns[i] = getCharacterPattern(word[i]);
-        }
+        patterns.put('P', new String[]{
+                " ******  ",
+                " *     * ",
+                " *     * ",
+                " ******  ",
+                " *       ",
+                " *       ",
+                " *       "
+        });
 
-        for (int line = 0; line < 7; line++) {
+        patterns.put('S', new String[]{
+                "  *****  ",
+                " *       ",
+                " *       ",
+                "  *****  ",
+                "       * ",
+                " *     * ",
+                "  *****  "
+        });
 
-            StringBuilder bannerLine = new StringBuilder();
+        String word = "OOPS";
 
-            for (CharacterPattern cp : patterns) {
-                bannerLine.append(cp.getPattern()[line]).append(" ");
+        // print banner
+        for (int i = 0; i < 7; i++) {
+
+            for (char c : word.toCharArray()) {
+
+                String[] pattern = patterns.get(c);
+                System.out.print(pattern[i] + " ");
             }
 
-            System.out.println(bannerLine);
+            System.out.println();
         }
     }
 }
